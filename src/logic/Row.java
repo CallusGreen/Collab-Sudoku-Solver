@@ -13,10 +13,13 @@ public class Row {
 	
 	// Constructors
 	
-	public Row() {}
-	
 	public Row() {
 		this.row = new ArrayList<>();
+	}
+	
+	public Row(int rowNumber) {
+		this.row = new ArrayList<>();
+		this.rowNumber = rowNumber;
 	}
 
 	// Methods
