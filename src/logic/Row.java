@@ -30,12 +30,18 @@ public class Row {
 		getRow().addAll(cells);
 	}
 	
-	public String displayRow() {
-		String rowString = "";
-		for(int index=0; index<row.size(); index++) {
-			rowString += this.row.get(index) + " ";
+	public String toString() {
+		String output = "";
+		
+		for(Cell cell : getRow()) {
+			output = output + cell;
 		}
-		return rowString;
+		
+		if(getRowNumber() != 0 && (getRowNumber() + 1) % 3 == 0) {
+			output = output + "\n";
+		}
+		
+		return output;
 	}
 
 	

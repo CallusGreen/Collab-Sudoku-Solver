@@ -2,20 +2,39 @@ package logic;
 
 public class Cell {
 
+	// Variables 
 	private int value;
 	private int xCoordinate;
 	private int yCoordinate;
 	
-	// Constructor
+	// Constructors
 	public Cell(int value, int xCoordinate, int yCoordinate) {
 		this.setValue(value);
 		this.setXCoordinate(xCoordinate);
 		this.setYCoordinate(yCoordinate);
 	}
-	
+
 	public Cell(){
 	    this(0,0,0);
 	  }
+	
+	// Methods
+	public String toString() {
+		String output = "";
+		
+		if(getValue() == 0) {
+			output =  " . ";
+			
+		} else {
+			output = " " + getValue() + " ";
+		}
+		
+		if(getXCoordinate() != 0 && (getXCoordinate() + 1) % 3 == 0) {
+			output = output + " ";
+		}
+		
+		return output;
+	}
 	
 	// getters
 	public int getValue() {
@@ -42,11 +61,5 @@ public class Cell {
 	
 	public void setYCoordinate(int yCoordinate) {
 		this.yCoordinate = yCoordinate;
-	}
-	
-	@Override
-	public String toString() {
-		return Integer.toString(this.value);
-	}
-	
+	}	
 }
