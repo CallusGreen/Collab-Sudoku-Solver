@@ -13,6 +13,10 @@ public class Cell {
 		this.setYCoordinate(yCoordinate);
 	}
 	
+	public Cell(){
+	    this(0,0,0);
+	  }
+	
 	// getters
 	public int getValue() {
 		return value;
@@ -39,14 +43,10 @@ public class Cell {
 	public void setYCoordinate(int yCoordinate) {
 		this.yCoordinate = yCoordinate;
 	}
-
-
-
-
-
-
-
-
 	
+	@Override
+	public String toString() {
+		return Integer.toString(this.value);
+	}
 	
 }
