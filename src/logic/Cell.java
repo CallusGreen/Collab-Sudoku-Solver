@@ -3,38 +3,50 @@ package logic;
 public class Cell {
 
 	private int value;
-	private int x_coord;
-	private int y_coord;
+	private int xCoordinate;
+	private int yCoordinate;
 	
-	public Cell(int value, int x_coord, int y_coord) {
+	// Constructor
+	public Cell(int value, int xCoordinate, int yCoordinate) {
 		this.setValue(value);
-		this.setX_coord(x_coord);
-		this.setY_coord(y_coord);
+		this.setXCoordinate(xCoordinate);
+		this.setYCoordinate(yCoordinate);
 	}
-
-	public int getY_coord() {
-		return y_coord;
-	}
-
-	public void setY_coord(int y_coord) {
-		this.y_coord = y_coord;
-	}
-
-	public int getX_coord() {
-		return x_coord;
-	}
-
-	public void setX_coord(int x_coord) {
-		this.x_coord = x_coord;
-	}
-
+	
+	// getters
 	public int getValue() {
 		return value;
 	}
 
+	public int getXCoordinate() {
+		return xCoordinate;
+	}
+	
+	public int getYCoordinate() {
+		return yCoordinate;
+	}
+	
+
+	// setters
 	public void setValue(int value) {
 		this.value = value;
 	}
+	
+	public void setXCoordinate(int xCoordinate) {
+		this.xCoordinate = xCoordinate;
+	}
+	
+	public void setYCoordinate(int yCoordinate) {
+		this.yCoordinate = yCoordinate;
+	}
+
+
+
+
+
+
+
+
 	
 	
 }
