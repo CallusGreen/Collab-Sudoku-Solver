@@ -29,6 +29,14 @@ public class Row {
 	public void addMultipleCellsToRow(List<Cell> cells) {
 		getRow().addAll(cells);
 	}
+	
+	public String displayRow() {
+		String rowString = "";
+		for(int index=0; index<row.size(); index++) {
+			rowString += this.row.get(index) + " ";
+		}
+		return rowString;
+	}
 
 	
 	// Getters & Setters
