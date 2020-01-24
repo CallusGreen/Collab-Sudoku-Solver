@@ -6,13 +6,11 @@ import java.util.List;
 public class Row {
 
 	// Class Variables
-	
 	private ArrayList<Cell> row;
 	private int rowNumber;
 	
 	
 	// Constructors
-	
 	public Row() {
 		this.row = new ArrayList<>();
 	}
@@ -22,18 +20,18 @@ public class Row {
 		this.rowNumber = rowNumber;
 	}
 
-	// Methods
 	
-	public void addCell(Cell cell) {
+	// Methods
+	public void addCellToRow(Cell cell) {
 		getRow().add(cell);
 	}
 	
-	public void addCells(List<Cell> cells) {
+	public void addMultipleCellsToRow(List<Cell> cells) {
 		getRow().addAll(cells);
 	}
 
-	// Getters & Setters
 	
+	// Getters & Setters
 	public ArrayList<Cell> getRow() {
 		return row;
 	}
