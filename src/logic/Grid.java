@@ -5,16 +5,18 @@ import java.util.ArrayList;
 public class Grid {
 	
 	// Variables
-	private ArrayList<Row> grid;
+	private ArrayList<Row> gridRows;
 	private int size;
-	
-	public Grid(int size) {
-		this.size = size;
-		this.grid = new ArrayList<>();	
-	} 
 	
 	
 	// Constructors
+	public Grid(int size) {
+		this.size = size;
+		this.gridRows = new ArrayList<>();	
+	} 
+	
+	
+	// Methods
 	public void createGrid() {
 		
 		for(int rowLoop = 0; rowLoop < getSize(); rowLoop++) {
@@ -25,15 +27,13 @@ public class Grid {
 				newRow.addCellToRow(newCell);
 			}
 			
-			getGrid().add(newRow);	
+			getGridRows().add(newRow);	
 		}
 	}
 	
-	
-	// Methods
 	public void displayGrid() {
 
-		for(Row row : getGrid()) {
+		for(Row row : getGridRows()) {
 			System.out.println(row.toString());
 		}
 		System.out.println("----------------------------");
@@ -41,12 +41,12 @@ public class Grid {
 
 	
 	// Getters & Setters
-	public ArrayList<Row> getGrid() {
-		return grid;
+	public ArrayList<Row> getGridRows() {
+		return gridRows;
 	}
 
-	public void setGrid(ArrayList<Row> grid) {
-		this.grid = grid;
+	public void setGridRows(ArrayList<Row> gridRows) {
+		this.gridRows = gridRows;
 	}
 
 	public int getSize() {
