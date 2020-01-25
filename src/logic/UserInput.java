@@ -4,83 +4,131 @@ import java.util.Scanner;
 
 public class UserInput {
 
-	
+	// Class Variables
 	private Scanner scanner; 
 	private Integer[] inputs;
-	
-	
-	// Constructor
+
+
+	// Constructors
 	public UserInput(Scanner scanner) {
 		this.scanner = scanner;
 		this.inputs = new Integer[3];
 	}
+
 	
-	// Prompts user for input, returns user input w/o spaces
-	private String takeInput() {
-		String input = "";
-		System.out.print("Enter your input, it must be 3 numbers: ");
-		input = this.scanner.nextLine();
-		input = input.replaceAll("\\s", "");
-		return input;
+	// Methods
+	private String takeInputFromUser() {
+		displayMessageToUser("Enter your input, it must be 3 numbers: ");
+
+		String usersInput = getScanner().nextLine();
+		usersInput = removeWhitespaceFromString(usersInput);
+
+		return usersInput;
 	}
 	
-	// Validates input by making sure it is 3 numbers in the range of 1-9
-	private boolean inputIsValid(String input) {
-		// Fail Case: input is less than 3
-		if(input.length() != 3) {
-			return false;
-		}
-		
-		for(int index=0; index<input.length(); index++) {
-			// Fail Case: input are not numbers 
-			if(!Character.isDigit(input.charAt(index))) {
-				return false;
-			} 
-			else {
-				int num = Integer.parseInt(input.charAt(index)+"");
-				// Fail Case: input not in range between 1-9
-				if(!validateRange(num)) {
-					return false;
-				}
-			}
-		}
-		return true;
- 	}
-	
-	private boolean validateRange(int num) {
-		return (num >=1) && (num<=9);
-	}
-	
-	// Set array to values from user input
-	// 	[0] -> x-coordinate
-	// 	[1] -> y-coordinate
-	// 	[2] -> cell value
-	private void setInputs(String input) {
-		this.inputs[0] = Integer.parseInt((input.charAt(0) + ""));
-		this.inputs[1] = Integer.parseInt((input.charAt(1) + ""));
-		this.inputs[2] = Integer.parseInt((input.charAt(2) + ""));
-	}
-	
-	public boolean getUserInput() {
+	public boolean getInputFromUser() {
 		boolean keepInputting = true;
 		String userInput = "";
+		
 		while(keepInputting) {
-			userInput = this.takeInput();
+			userInput = takeInputFromUser();
+			
 			if(userInput.equals("-1")) {
 				return false;
 			}
-			
-			if(this.inputIsValid(userInput)) {
+
+			if(inputIsValid(userInput)) {
 				setInputs(userInput);
 				keepInputting = false;
 			}
 		}
 		return true;
 	}
-	
-	// getter method for Integer[] inputs
-	public Integer[] getInputs() {
-		return this.inputs;
+
+	private boolean inputIsValid(String input) {
+
+		if(inputIsCorrectLength(input) 
+				&& inputsAreIntegers(input) 
+				&& inputsAreInRange(input)) {
+			return true;
+		}
+		return false;
 	}
+
+	public boolean inputIsCorrectLength(String input) {
+		boolean inputHasLengthOfThree = input.length() == 3;
+
+		if(inputHasLengthOfThree) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean inputsAreIntegers(String input) {
+		for(int index = 0; index < input.length(); index++) {
+			boolean charIsInteger = Character.isDigit(input.charAt(index));
+
+			if(!charIsInteger) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public boolean inputsAreInRange(String input) {
+		for(int index = 0; index < input.length(); index++) {
+
+			int number = Integer.parseInt(input.charAt(index) + "");
+			boolean numberIsInRange = validateRange(number);
+
+			if(!numberIsInRange){
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private boolean validateRange(int num) {
+		return (num >=1) && (num<=9);
+	}
+
+	private void setInputs(String input) {
+		int xCoordinate = Integer.parseInt((input.charAt(0) + ""));
+		int yCoordinate = Integer.parseInt((input.charAt(1) + ""));
+		int cellValue = Integer.parseInt((input.charAt(2) + ""));
+		
+		getInputs()[0] = xCoordinate;
+		getInputs()[1] = yCoordinate;
+		getInputs()[2] = cellValue;
+	}
+
+	public void displayMessageToUser(String message) {
+		System.out.println(message);
+	}
+
+	public String removeWhitespaceFromString(String string) {
+		String updatedString = string;
+		updatedString = updatedString.replaceAll("\\s", "");
+
+		return updatedString;
+	}
+
 	
+	// Getters & Setters
+	public Scanner getScanner() {
+		return scanner;
+	}
+
+	public void setScanner(Scanner scanner) {
+		this.scanner = scanner;
+	}
+
+	public Integer[] getInputs() {
+		return inputs;
+	}
+
+	public void setInputs(Integer[] inputs) {
+		this.inputs = inputs;
+	}
 }

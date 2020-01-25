@@ -7,6 +7,7 @@ public class Cell {
 	private int xCoordinate;
 	private int yCoordinate;
 	
+	
 	// Constructors
 	public Cell(int value, int xCoordinate, int yCoordinate) {
 		this.setValue(value);
@@ -17,6 +18,7 @@ public class Cell {
 	public Cell(){
 	    this(0,0,0);
 	  }
+	
 	
 	// Methods
 	public String toString() {
@@ -36,7 +38,8 @@ public class Cell {
 		return output;
 	}
 	
-	// getters
+	
+	// Getters & Setters
 	public int getValue() {
 		return value;
 	}
@@ -48,9 +51,7 @@ public class Cell {
 	public int getYCoordinate() {
 		return yCoordinate;
 	}
-	
 
-	// setters
 	public void setValue(int value) {
 		this.value = value;
 	}
