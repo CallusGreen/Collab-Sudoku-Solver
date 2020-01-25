@@ -1,12 +1,13 @@
 package logic;
 
+import java.util.Scanner;
+
 public class App {
-
 	public static void main(String[] args) {
-		Grid grid = new Grid(9,9);
-		grid.createGrid(9, 9);
-		grid.displayGrid();
-		System.out.println("hello world");
+		Scanner scanner = new Scanner(System.in);
+		Grid grid = new Grid(9);
+		UserInput userInput = new UserInput(scanner);
+		Game game = new Game(grid, userInput);
+		game.runGame();
 	}
-
 }
