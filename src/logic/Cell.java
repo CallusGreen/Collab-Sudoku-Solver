@@ -10,9 +10,14 @@ public class Cell {
 	
 	// Constructors
 	public Cell(int value, int xCoordinate, int yCoordinate) {
-		this.setValue(value);
-		this.setXCoordinate(xCoordinate);
-		this.setYCoordinate(yCoordinate);
+		this.value = value;
+		this.xCoordinate = xCoordinate;
+		this.yCoordinate = yCoordinate;
+	}
+	
+	public Cell(int xCoordinate, int yCoordinate) {
+		this.xCoordinate = xCoordinate;
+		this.yCoordinate = yCoordinate;
 	}
 
 	public Cell(){
@@ -36,6 +41,10 @@ public class Cell {
 		}
 		
 		return output;
+	}
+	
+	public String toCoordinates() {
+		return "(" + getXCoordinate() + "," + getYCoordinate() + ")";
 	}
 	
 	
@@ -62,5 +71,23 @@ public class Cell {
 	
 	public void setYCoordinate(int yCoordinate) {
 		this.yCoordinate = yCoordinate;
-	}	
+	}
+	
+	@Override
+	public boolean equals(Object object) {
+		if(object == null) {
+			return false;
+		}
+		
+		if(getClass() != object.getClass()) {
+			return false;
+		}
+		
+		Cell compared = (Cell) object;
+		
+		if(this.xCoordinate != compared.getXCoordinate() || this.yCoordinate != compared.getYCoordinate()) {
+			return false;
+		}	
+		return true;
+	}
 }
