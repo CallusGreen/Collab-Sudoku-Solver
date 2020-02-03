@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import logic.Cell;
-import logic.Grid;
+import model.Cell;
+import model.Grid;
 
 class GridTest {
 

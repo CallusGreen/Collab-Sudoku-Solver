@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import logic.Cell;
-import logic.Row;
+import model.Cell;
+import model.Row;
 
 class RowTest {
 
