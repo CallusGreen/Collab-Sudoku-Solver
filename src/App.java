@@ -10,8 +10,8 @@ import java.util.Scanner;
 public class App {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		runGameNormal(scanner);
-		//runGameWithFileObject(scanner);
+		//runGameNormal(scanner);
+		runGameWithFileObject(scanner);
 	}
 
 	public static Object getObjectFromFile(File file){

@@ -14,7 +14,7 @@ public class Grid implements Serializable {
 	public Grid(int size) {
 		this.size = size;
 		this.gridRows = new ArrayList<>();
-		createGrid();
+		//createGrid();
 	} 
 	
 	
