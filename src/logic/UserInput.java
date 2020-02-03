@@ -17,21 +17,21 @@ public class UserInput {
 
 	
 	// Methods
-	private String takeInputFromUser() {
-		displayMessageToUser("Enter your input, it must be 3 numbers: ");
-
+	private String inputForSudoku() {
+		System.out.println("Enter your input, it must be 3 numbers (X Y Value): ");
+		System.out.println("Enter -1 to quit");
 		String usersInput = getScanner().nextLine();
 		usersInput = removeWhitespaceFromString(usersInput);
 
 		return usersInput;
 	}
 	
-	public boolean getInputFromUser() {
+	public boolean runInputForSudoku() {
 		boolean keepInputting = true;
 		String userInput = "";
 		
 		while(keepInputting) {
-			userInput = takeInputFromUser();
+			userInput = inputForSudoku();
 			
 			if(userInput.equals("-1")) {
 				return false;
@@ -43,6 +43,10 @@ public class UserInput {
 			}
 		}
 		return true;
+	}
+
+	public char getUserInput(){
+		return this.scanner.nextLine().toLowerCase().charAt(0);
 	}
 
 	private boolean inputIsValid(String input) {
@@ -90,7 +94,7 @@ public class UserInput {
 	}
 
 	private boolean validateRange(int num) {
-		return (num >=1) && (num<=9);
+		return (num >=0) && (num<=9);
 	}
 
 	private void setInputs(String input) {
@@ -103,18 +107,13 @@ public class UserInput {
 		getInputs()[2] = cellValue;
 	}
 
-	public void displayMessageToUser(String message) {
-		System.out.println(message);
-	}
-
-	public String removeWhitespaceFromString(String string) {
+	private String removeWhitespaceFromString(String string) {
 		String updatedString = string;
 		updatedString = updatedString.replaceAll("\\s", "");
 
 		return updatedString;
 	}
 
-	
 	// Getters & Setters
 	public Scanner getScanner() {
 		return scanner;

@@ -1,8 +1,9 @@
 package logic;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Grid {
+public class Grid implements Serializable {
 	
 	// Variables
 	private ArrayList<Row> gridRows;
@@ -41,6 +42,14 @@ public class Grid {
 			column.add(columnCell);
 		}
 		
+		return column;
+	}
+
+	public ArrayList<Cell> getColumn(int columnNumber){
+		ArrayList<Cell> column = new ArrayList<>();
+		for(Row r: this.gridRows){
+			column.add(r.getRow().get(columnNumber));
+		}
 		return column;
 	}
 	

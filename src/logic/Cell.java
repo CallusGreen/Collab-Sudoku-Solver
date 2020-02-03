@@ -1,6 +1,8 @@
 package logic;
 
-public class Cell {
+import java.io.Serializable;
+
+public class Cell implements Serializable {
 
 	// Variables 
 	private int value;
@@ -20,6 +22,9 @@ public class Cell {
 		this.yCoordinate = yCoordinate;
 	}
 
+	public Cell(int value){
+		this(value, 0,0);
+	}
 	public Cell(){
 	    this(0,0,0);
 	  }
@@ -84,10 +89,15 @@ public class Cell {
 		}
 		
 		Cell compared = (Cell) object;
-		
-		if(this.xCoordinate != compared.getXCoordinate() || this.yCoordinate != compared.getYCoordinate()) {
+
+		if(this.getValue() != compared.getValue()){
 			return false;
-		}	
+		}
+		
+//		if(this.xCoordinate != compared.getXCoordinate() || this.yCoordinate != compared.getYCoordinate()) {
+//			return false;
+//		}
+
 		return true;
 	}
 }

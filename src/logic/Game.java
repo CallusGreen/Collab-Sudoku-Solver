@@ -1,5 +1,9 @@
 package logic;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+
 public class Game {
 	
 	// Class Variables
@@ -39,15 +43,62 @@ public class Game {
 			displayMessageToUser("\nMove #" + counter);
 			getGrid().displayGrid();
 			
-			if(getUserInput().getInputFromUser()) {
+			if(getUserInput().runInputForSudoku()) {
 				setCellValue(getUserInput().getInputs());
-				
-			} else {
+			}
+			else {
+				System.out.print("Do you want to save this board to file? Enter Yes or No ");
+				char response = this.userInput.getUserInput();
+				if(response == 'y'){
+					saveGridToFile();
+				}
 				keepPlaying = false;
 			}
 		}
 		
 		displayMessageToUser("Game has ended!");
+	}
+
+	public void runGameWithObject() {
+		boolean keepPlaying = true;
+		int counter = 0;
+
+		//getGrid().createGrid();
+
+		while(keepPlaying) {
+			counter++;
+
+			displayMessageToUser("\nMove #" + counter);
+			getGrid().displayGrid();
+
+			if(getUserInput().runInputForSudoku()) {
+				setCellValue(getUserInput().getInputs());
+			}
+			else {
+				System.out.print("Do you want to save this board to file? Enter Yes or No ");
+				char response = this.userInput.getUserInput();
+				if(response == 'y'){
+					saveGridToFile();
+				}
+				keepPlaying = false;
+			}
+		}
+
+		displayMessageToUser("Game has ended!");
+	}
+
+	private void saveGridToFile(){
+		File file = new File("../Collab-Sudoku-Solver/res/sudoku_grid");
+
+		try{
+			FileOutputStream out = new FileOutputStream(file);
+			ObjectOutputStream outObj = new ObjectOutputStream(out);
+			outObj.writeObject(this.grid);
+			outObj.close();
+			System.out.println("The object was written to file");
+		} catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public void displayMessageToUser(String message){

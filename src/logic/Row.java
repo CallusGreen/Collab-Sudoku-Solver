@@ -1,9 +1,10 @@
 package logic;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Row {
+public class Row implements Serializable {
 
 	// Class Variables
 	private ArrayList<Cell> row;
