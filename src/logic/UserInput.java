@@ -50,7 +50,6 @@ public class UserInput {
 	}
 
 	private boolean inputIsValid(String input) {
-
 		if(inputIsCorrectLength(input) 
 				&& inputsAreIntegers(input) 
 				&& inputsAreInRange(input)) {
@@ -69,7 +68,7 @@ public class UserInput {
 		return false;
 	}
 
-	public boolean inputsAreIntegers(String input) {
+	private boolean inputsAreIntegers(String input) {
 		for(int index = 0; index < input.length(); index++) {
 			boolean charIsInteger = Character.isDigit(input.charAt(index));
 
@@ -80,7 +79,7 @@ public class UserInput {
 		return true;
 	}
 
-	public boolean inputsAreInRange(String input) {
+	private boolean inputsAreInRange(String input) {
 		for(int index = 0; index < input.length(); index++) {
 
 			int number = Integer.parseInt(input.charAt(index) + "");

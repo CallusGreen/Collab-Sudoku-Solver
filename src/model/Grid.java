@@ -1,4 +1,4 @@
-package logic;
+package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,13 +13,12 @@ public class Grid implements Serializable {
 	// Constructors
 	public Grid(int size) {
 		this.size = size;
-		this.gridRows = new ArrayList<>();	
+		this.gridRows = new ArrayList<>();
+		createGrid();
 	} 
 	
 	
 	// Methods
-	
-	//Potentially put this method into constructor as one is never used without the other?
 	public void createGrid() {
 		
 		for(int rowLoop = 0; rowLoop < getSize(); rowLoop++) {
@@ -29,8 +28,8 @@ public class Grid implements Serializable {
 				Cell newCell = new Cell(0, cellLoop, rowLoop);
 				newRow.addCellToRow(newCell);
 			}
-			
-			getGridRows().add(newRow);	
+
+			this.gridRows.add(newRow);
 		}
 	}
 	
@@ -56,15 +55,15 @@ public class Grid implements Serializable {
 	// Horrible, brute-force method that needs to be made into algorithm
 	public ArrayList<Cell> getSquare(Cell cell){
 		ArrayList<Cell> square = new ArrayList<>();
-		
+
 		int cellRow = cell.getYCoordinate();
 		int cellCol = cell.getXCoordinate();
-		
+
 		int squareRowNum = 0;
 		int squareColNum = 0;
 		int startingRowNum = 0;
 		int startingColNum = 0;
-		
+
 		if(cellRow == 0 || cellRow == 1 || cellRow == 2) {
 			squareRowNum = 0;
 		} else if(cellRow == 3 || cellRow == 4 || cellRow == 5) {
@@ -72,7 +71,7 @@ public class Grid implements Serializable {
 		} else {
 			squareRowNum = 2;
 		}
-		
+
 		if(cellCol == 0 || cellCol == 1 || cellCol == 2) {
 			squareColNum = 0;
 		} else if(cellCol == 3 || cellCol == 4 || cellCol == 5) {
@@ -80,7 +79,7 @@ public class Grid implements Serializable {
 		} else {
 			squareColNum = 2;
 		}
-		
+
 		if(squareRowNum == 0) {
 			startingRowNum = 0;
 		} else if (squareRowNum == 1) {
@@ -88,7 +87,7 @@ public class Grid implements Serializable {
 		} else {
 			startingRowNum = 6;
 		}
-		
+
 		if(squareColNum == 0) {
 			startingColNum = 0;
 		} else if (squareColNum == 1) {
@@ -96,14 +95,14 @@ public class Grid implements Serializable {
 		} else {
 			startingColNum = 6;
 		}
-		
+
 		for(int rowLoop = startingRowNum; rowLoop < startingRowNum + 3; rowLoop++) {
 			for(int colLoop = startingColNum; colLoop < startingColNum + 3; colLoop++) {
 				Cell cellToAdd = getCellFromGrid(colLoop, rowLoop);
 				square.add(cellToAdd);
 			}
 		}
-		
+
 		return square;
 	}
 	

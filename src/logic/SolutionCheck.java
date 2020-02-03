@@ -1,5 +1,9 @@
 package logic;
 
+import model.Cell;
+import model.Grid;
+import model.Row;
+
 import java.util.ArrayList;
 
 public class SolutionCheck {
