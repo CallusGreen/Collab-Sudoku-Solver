@@ -23,7 +23,7 @@ class GridTest {
 			expectedColumn.add(cell);
 		}
 		
-		ArrayList<Cell> actualColumn = grid.getColumn(grid.getCellFromGrid(1, 0));
+		ArrayList<Cell> actualColumn = grid.getGridColumn(grid.getCellFromGrid(1, 0));
 
 		assertTrue(expectedColumn.equals(actualColumn));
 	}
