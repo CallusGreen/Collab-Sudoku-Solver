@@ -1,5 +1,5 @@
-import logic.Game;
-import logic.UserInput;
+import logic.console.RunGameInConsole;
+import logic.console.ConsoleInputOperations;
 import model.Grid;
 
 import java.io.File;
@@ -34,17 +34,17 @@ public class App {
 	public static void runGameWithFileObject(Scanner scanner){
 		File file = new File("../Collab-Sudoku-Solver/res/sudoku_grid");
 		Grid grid = (Grid) getObjectFromFile(file);
-		UserInput userInput = new UserInput(scanner);
-		Game game = new Game(grid, userInput);
+		ConsoleInputOperations ConsoleInputOperations = new ConsoleInputOperations(scanner);
+		RunGameInConsole runGameInConsole = new RunGameInConsole(grid, ConsoleInputOperations);
 
-		game.runGame();
+		runGameInConsole.runGame();
 	}
 
 	public static void runGameNormal(Scanner scanner){
-		UserInput userInput = new UserInput(scanner);
+		ConsoleInputOperations ConsoleInputOperations = new ConsoleInputOperations(scanner);
 		Grid grid = new Grid(9);
-		Game game = new Game(grid, userInput);
+		RunGameInConsole runGameInConsole = new RunGameInConsole(grid, ConsoleInputOperations);
 
-		game.runGame();
+		runGameInConsole.runGame();
 	}
 }

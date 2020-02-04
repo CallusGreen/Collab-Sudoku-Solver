@@ -37,15 +37,15 @@ public class Cell implements Serializable {
 		return value;
 	}
 
+	public void setValue(int value) {
+		this.value = value;
+	}
 	public int getXCoordinate() {
 		return xCoordinate;
 	}
+
 	public int getYCoordinate() {
 		return yCoordinate;
-	}
-
-	public void setValue(int value) {
-		this.value = value;
 	}
 
 	public void setXCoordinate(int xCoordinate) {

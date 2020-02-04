@@ -7,12 +7,12 @@ public class Grid implements Serializable {
 	
 	// Variables
 	private ArrayList<Row> gridRows;
-	private int size;
+	private int gridSize;
 	
 	
 	// Constructors
-	public Grid(int size) {
-		this.size = size;
+	public Grid(int gridSize) {
+		this.gridSize = gridSize;
 		this.gridRows = new ArrayList<>();
 		//createGrid();
 	} 
@@ -20,119 +20,42 @@ public class Grid implements Serializable {
 	
 	// Methods
 	public void createGrid() {
-		
-		for(int rowLoop = 0; rowLoop < getSize(); rowLoop++) {
-			Row newRow = new Row(rowLoop);
-			
-			for(int cellLoop = 0; cellLoop < getSize(); cellLoop++) {
-				Cell newCell = new Cell(0, cellLoop, rowLoop);
+
+		for(int yCoordinateIndex = 0; yCoordinateIndex < this.gridSize; yCoordinateIndex++) {
+			Row newRow = new Row();
+
+			for(int xCoordinateIndex = 0; xCoordinateIndex < this.gridSize; xCoordinateIndex++) {
+				Cell newCell = new Cell(0, xCoordinateIndex, yCoordinateIndex);
 				newRow.addCellToRow(newCell);
 			}
 
 			this.gridRows.add(newRow);
 		}
 	}
-	
-	public ArrayList<Cell> getColumn(Cell cell){
-		ArrayList<Cell> column = new ArrayList<>();
-		
-		for(Row row : getGridRows()) {
-			Cell columnCell = row.getRow().get(cell.getXCoordinate());
-			column.add(columnCell);
-		}
-		
-		return column;
+
+
+	public int getGridSize() {
+		return gridSize;
 	}
 
-	public ArrayList<Cell> getColumn(int columnNumber){
+	public Cell getCellFromGrid(int coordinateX, int coordinateY) {
+		return this.gridRows.get(coordinateY).getRowOfCells().get(coordinateX);
+	}
+
+	public Row getGridRow(int rowNumber){
+		return this.gridRows.get(rowNumber);
+	}
+
+	public ArrayList<Cell> getGridColumn(int columnNumber){
 		ArrayList<Cell> column = new ArrayList<>();
 		for(Row r: this.gridRows){
-			column.add(r.getRow().get(columnNumber));
+			column.add(r.getRowOfCells().get(columnNumber));
 		}
 		return column;
 	}
-	
-	// Horrible, brute-force method that needs to be made into algorithm
-	public ArrayList<Cell> getSquare(Cell cell){
-		ArrayList<Cell> square = new ArrayList<>();
 
-		int cellRow = cell.getYCoordinate();
-		int cellCol = cell.getXCoordinate();
-
-		int squareRowNum = 0;
-		int squareColNum = 0;
-		int startingRowNum = 0;
-		int startingColNum = 0;
-
-		if(cellRow == 0 || cellRow == 1 || cellRow == 2) {
-			squareRowNum = 0;
-		} else if(cellRow == 3 || cellRow == 4 || cellRow == 5) {
-			squareRowNum = 1;
-		} else {
-			squareRowNum = 2;
-		}
-
-		if(cellCol == 0 || cellCol == 1 || cellCol == 2) {
-			squareColNum = 0;
-		} else if(cellCol == 3 || cellCol == 4 || cellCol == 5) {
-			squareColNum = 1;
-		} else {
-			squareColNum = 2;
-		}
-
-		if(squareRowNum == 0) {
-			startingRowNum = 0;
-		} else if (squareRowNum == 1) {
-			startingRowNum = 3;
-		} else {
-			startingRowNum = 6;
-		}
-
-		if(squareColNum == 0) {
-			startingColNum = 0;
-		} else if (squareColNum == 1) {
-			startingColNum = 3;
-		} else {
-			startingColNum = 6;
-		}
-
-		for(int rowLoop = startingRowNum; rowLoop < startingRowNum + 3; rowLoop++) {
-			for(int colLoop = startingColNum; colLoop < startingColNum + 3; colLoop++) {
-				Cell cellToAdd = getCellFromGrid(colLoop, rowLoop);
-				square.add(cellToAdd);
-			}
-		}
-
-		return square;
-	}
-	
-	public void displayGrid() {
-
-		for(Row row : getGridRows()) {
-			System.out.println(row.toString());
-		}
-		System.out.println("----------------------------");
-	}
-	
-	public Cell getCellFromGrid(int coordinateX, int coordinateY) {
-		return getGridRows().get(coordinateY).getRow().get(coordinateX);
+	public ArrayList<Row> getGrid(){
+		return this.gridRows;
 	}
 
-	
-	// Getters & Setters
-	public ArrayList<Row> getGridRows() {
-		return gridRows;
-	}
-
-	public void setGridRows(ArrayList<Row> gridRows) {
-		this.gridRows = gridRows;
-	}
-
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
-	}
 }
